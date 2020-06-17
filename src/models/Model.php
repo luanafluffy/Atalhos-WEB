@@ -13,17 +13,13 @@ class Model {
     public function loadFromArray($arr, $sanitize = true) {
         if($arr) {
             foreach($arr as $key => $value){
-                // $conn = Database::getConnection();
-                //Limpando os caracteres especiais
                 $cleanValue = $value;
                 if($sanitize && isset($cleanValue)) {
                     $cleanValue = strip_tags(trim($cleanValue));
                     $cleanValue = htmlentities($cleanValue, ENT_NOQUOTES);
-                    // $cleanValue = mysqli_real_escape_string($conn, $cleanValue);
                 }
                 $this->$key = $cleanValue;
             }
-            // $conn->close();
         }
     }
 

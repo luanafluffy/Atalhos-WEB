@@ -25,6 +25,7 @@ function loadTemplateView($viewName, $params = array()) {
         }
     }
 
+    $atalho = $_SESSION['atalho'];
 
     require_once(TEMPLATE_PATH . "/header.php");
     require_once(TEMPLATE_PATH . "/left.php");

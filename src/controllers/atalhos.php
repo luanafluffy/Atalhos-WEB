@@ -1,10 +1,6 @@
 <?php
-
-// session_start();
-// $atalho = $_SESSION['atalho'];
-
 $atalhos = Atalhos::get();
-$selectedAtalhoId = $_POST['atalho'] ? $_POST['atalho'] : $atalho->atalho_id;
+$selectedAtalhoId = $_POST['atalho'] ? $_POST['atalho'] : $atalho->id;
 
 $exception = null;
 if(isset($_GET['delete'])) {
@@ -12,14 +8,15 @@ if(isset($_GET['delete'])) {
         Atalhos::deleteById($_GET['delete']);
         addSuccessMsg('Atalho excluído com sucesso.');
     } catch(Exception $e) {
-        $exception = $e;
+        if(stripos($e->getMessage(), 'FOREIGN KEY')) {
+            addErrorMsg('Não é possível excluir o atalho com registros de ponto.');
+        } else {
+            $exception = $e;
+        }
     }
 }
 
-$date = (new Datetime())->getTimestamp();
-$today = strftime('%d de %B de %Y', $date);
 loadTemplateView('atalhos', [
-    'today' => $today, 
     'exception' => $exception,
     'selectedAtalhoId' => $selectedAtalhosId,
     'atalhos' => $atalhos

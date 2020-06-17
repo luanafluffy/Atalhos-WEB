@@ -39,9 +39,9 @@ function getDateAsDateTime($date) {
 //     return new DateTimeImmutable($interval->format('%H:%i:%s'));
 // }
 
-// function getDateFromString($str) {
-//     return DateTimeImmutable::createFromFormat('H:i:s', $str);
-// }
+function getDateFromString($str) {
+    return DateTimeImmutable::createFromFormat('H:i:s', $str);
+}
 
 // function getFirstDayOfMonth($date) {
 //     $time = getDateAsDateTime($date)->getTimestamp();

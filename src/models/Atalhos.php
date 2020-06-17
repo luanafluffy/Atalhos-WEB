@@ -2,7 +2,7 @@
 class Atalhos extends Model {
     protected static $tableName = 'atalhos';
     protected static $columns = [
-        'atalho_id',
+        'id',
         'titulo',
         'img_logo',
         'subtitulo1',
@@ -30,7 +30,7 @@ class Atalhos extends Model {
         $this->validate();
         if(!$this->subtitulo2) $this->subtitulo2 = null;
         if(!$this->link_subtitulo2) $this->link_subtitulo2 = null;
-        if(!$this->img_logo) $this->img_logo = $_FILES['img_logo']['name'];
+        if(!$this->img_logo) $this->img_logo = $_FILES['img_logo']['name']; 
         return parent::update();
     }
 

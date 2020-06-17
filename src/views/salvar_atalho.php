@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <main class="content">
     <?php
     renderTitle(
@@ -9,7 +13,7 @@
     include(TEMPLATE_PATH . "/messages.php");
     ?>
 
-    <form action="#" method="post">
+    <form action="#" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= $id ?>">
         
         <!-- Campo para o titulo  -->
@@ -22,18 +26,15 @@
                     <?= $errors['titulo'] ?>
                 </div>
             </div>
+        </div>
+        
+        <!-- Campo para o imagem  -->
+        <div>
+            <label for="img_logo" >Imagem/Logo Marca (formato .png)</label>
+            <input type="file" id="img_logo" name="img_logo"value="<?= $img_logo ?? 'logo_padrao.png' ?>" 
+                class="form-control <?= $errors['img_logo'] ? 'is-invalid' : ''?> ">
         </div><br>
         
-        <!-- Campo para imagem da logo -->
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <label for="img_logo" enctype="multipart/form-data">Imagem/Logo Marca (formato .png)</label>
-                <input type="file" id="img_logo" name="img_logo" value="<?= $img_logo ?? 'logo_padrao.png' ?>" >
-                <img src= "<?= "/assets/img/" . $nome_img = $img_logo ?? "logo_padrao.png" ?>"  height="400"
-                    class="form-control <?= $errors['img_logo'] ? 'is-invalid' : ''?> ">  <!-- Conferindo se está no formato PNG -->
-            </div>
-        </div><br>
-
         <!-- Campo para a Subtitulo 1 -->
         <div class="form-row">
             <div class="form-group col-md-6">

@@ -21,7 +21,7 @@ class Atalhos extends Model {
         $this->validate();
         if(!$this->subtitulo2) $this->subtitulo2 = null;
         if(!$this->link_subtitulo2) $this->link_subtitulo2 = null;
-        if(!$this->img_logo) $this->img_logo = "logo_padrao.png";
+        if(!$this->img_logo) $this->img_logo = $_FILES['img_logo']['name'];
         return parent::insert();
     }
 
@@ -30,7 +30,7 @@ class Atalhos extends Model {
         $this->validate();
         if(!$this->subtitulo2) $this->subtitulo2 = null;
         if(!$this->link_subtitulo2) $this->link_subtitulo2 = null;
-        if(!$this->img_logo) $this->img_logo = "logo_padrao.png";
+        if(!$this->img_logo) $this->img_logo = $_FILES['img_logo']['name'];
         return parent::update();
     }
 

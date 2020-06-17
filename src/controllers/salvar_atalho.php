@@ -2,27 +2,19 @@
 $exception = null;
 $atalhoDado = [];
 
-if(stripos($img_logo, '.png') > 0): // Filtrando apenas as extensões .png 
-    $pastaUpload = IMG_LOGO;
-    $nomeArquivo = $_FILES[$img_logo]['name'];
-    $arquivo = $pastaUpload . $nomeArquivo;
-    $tmp = $_FILES['arquivo']['tmp_name'];
-
-    if(move_uploaded_file($tmp, $arquivo)) { 
-        echo "<br>Imagem válido";
-    } else {
-        echo "<br>Erro no upload da imagem!";
-    }
-endif;
-
 if(count($_POST) === 0 && isset($_GET['update'])) {
     $atalho = Atalhos::getOne(['atalho_id' => $_GET['update']]);
     $atalhoDado = $atalho->getValues();
     
-}elseif(count($_POST) > 0) {
+} elseif(count($_POST) > 0) {
     try {
         $dbAtalho = new Atalhos($_POST);
-        
+        $nomeDoArquivo = $_FILES['img_logo']['name'];
+
+        $dir = 'assets/img/'; //Diretório para uploads
+        if(move_uploaded_file($_FILES['img_logo']['tmp_name'], $dir. $nomeDoArquivo)) { 
+            echo "<br>Arquivo válido e enviado com sucesso.";
+        }
         
         if($dbAtalho->atalho_id) {
             $dbAtalho->update();
